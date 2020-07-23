@@ -1,6 +1,7 @@
 const express = require('express')
 const axios = require("axios");
 const querystring = require('querystring');
+const mocks = require("./mocks")
 
 const port = process.env.PORT || 1338;
 var app = express();
@@ -9,7 +10,7 @@ const REDIRECT_URL = `http://localhost:${port}/SAF`
 
 app.get("/Task/GetAvailableSAFTasks", async function (req, res) {
     return res.send({
-        Data: []
+        Data: mocks.storageMock
     })
 })
 
