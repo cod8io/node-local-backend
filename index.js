@@ -5,6 +5,7 @@ const mocks = require("./mocks")
 
 const port = process.env.PORT || 1338;
 var app = express();
+app.use(express.json());
 
 const REDIRECT_URL = `http://localhost:${port}/SAF`
 
@@ -33,7 +34,18 @@ app.get("/Location/GetBinInventory", async function (req, res) {
 })
 
 app.get("/Location/GetSAFBinMasterData", async function (req, res) {
-    res.send({})
+    console.log(new Date().toDateString(), " >> /Location/GetSAFBinMasterData");
+    res.send({
+        Data: [
+            {
+                BIN: "40A002",
+                WH: "RCOF",
+                PUTAWAY_BLOCK: "N",
+                REMOVAL_BLOCK: "N",
+                UPDATE_DATE: "12/8/19"
+            }
+        ]
+    })
 })
 
 app.get("/Batch/GetSAFLotMasterData", async function (req, res) {
@@ -41,7 +53,41 @@ app.get("/Batch/GetSAFLotMasterData", async function (req, res) {
 })
 
 app.get("/Task/GetBlockedContainerInfo", async function (req, res) {
+    console.log(new Date().toDateString(), " >> /Task/GetBlockedContainerInfo");
+    res.send({
+        Data: [{
+            CONTAINERID: "0A14101-00005",
+            WH: "RCOF",
+            IS_STAGING: "N",
+            IS_HOLD: "N"
+        },
+        {
+            CONTAINERID: "0A14101-00001",
+            WH: "RCOF",
+            IS_STAGING: "N",
+            IS_HOLD: "N"
+        }]
+    })
+    // res.send({})
+})
+
+// TASKS
+app.post("/Task/SyncData", async function (req, res) {
+    console.log(new Date().toDateString(), " >> /Task/SyncData");
     res.send({})
+})
+
+// LOGS
+app.post("/device/log", async function (req, res) {
+    console.log(new Date().toDateString(), " >> /device/log");
+    console.log(req.body);
+    res.send({})
+})
+
+// AUTH
+app.get("/User/GetRolesAndActiveDirectories", async function (req, res) {
+
+    res.send({ Data: [{ ROLE: "" }] })
 })
 
 app.get("/SAF", async function (req, res) {
