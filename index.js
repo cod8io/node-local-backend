@@ -11,7 +11,32 @@ const REDIRECT_URL = `http://localhost:${port}/SAF`
 
 app.get("/Task/GetAvailableSAFTasks", async function (req, res) {
     return res.send({
-        Data: mocks.storageMock
+        Data: require("./data/GetAvailableSAFTasks_07_29_2020 09_55_27.json")
+    })
+    // return res.send({
+    //     Data: mocks.storageMock
+    // })
+})
+
+app.get("/Task/GetAvailableSAFTasks", async function (req, res) {
+    return res.send({
+        Data: require("./data/GetAvailableSAFTasks_07_29_2020 09_55_27.json")
+    })
+    // return res.send({
+    //     Data: mocks.storageMock
+    // })
+})
+
+app.post("/Task/Checkout", async function (req, res) {
+    const { taskIds, deviceId, userId } = req.body;
+    const result = {};
+    taskIds.forEach(id => {
+        result[id] = [];
+        const data = mocks.subtaskMock[id];
+        data.forEach(d => result[id].push(d));
+    });
+    return res.send({
+        Data: result
     })
 })
 
@@ -54,21 +79,21 @@ app.get("/Batch/GetSAFLotMasterData", async function (req, res) {
 
 app.get("/Task/GetBlockedContainerInfo", async function (req, res) {
     console.log(new Date().toDateString(), " >> /Task/GetBlockedContainerInfo");
-    res.send({
-        Data: [{
-            CONTAINERID: "0A14101-00005",
-            WH: "RCOF",
-            IS_STAGING: "N",
-            IS_HOLD: "N"
-        },
-        {
-            CONTAINERID: "0A14101-00001",
-            WH: "RCOF",
-            IS_STAGING: "N",
-            IS_HOLD: "N"
-        }]
-    })
-    // res.send({})
+    // res.send({
+    //     Data: [{
+    //         CONTAINERID: "0A14101-00005",
+    //         WH: "RCOF",
+    //         IS_STAGING: "N",
+    //         IS_HOLD: "N"
+    //     },
+    //     {
+    //         CONTAINERID: "0A14101-00001",
+    //         WH: "RCOF",
+    //         IS_STAGING: "N",
+    //         IS_HOLD: "N"
+    //     }]
+    // })
+    res.send({})
 })
 
 // TASKS
@@ -87,8 +112,34 @@ app.post("/device/log", async function (req, res) {
 // AUTH
 app.get("/User/GetRolesAndActiveDirectories", async function (req, res) {
 
-    res.send({ Data: [{ ROLE: "" }] })
+    res.send({ Data: [{ ROLE: "DEVELOPER" }] })
 })
+
+// DEVICE
+app.post("/device/GetDeviceBatchCounters", async function (req, res) {
+    console.log(new Date().toDateString(), " >> /device/GetDeviceBatchCounters");
+    // TODO: Not mocked for the bug
+    res.send({})
+})
+
+app.post("/device/telemetry", async function (req, res) {
+    console.log(new Date().toDateString(), " >> /device/telemetry");
+    // TODO: Not mocked for the bug
+    res.send({})
+})
+
+app.post("/device/errors", async function (req, res) {
+    console.log(new Date().toDateString(), " >> /device/errors");
+    // TODO: Not mocked for the bug
+    res.send({})
+})
+
+app.get("/device/GetDeviceContPrefix", async function (req, res) {
+    console.log(new Date().toDateString(), " >> /device/GetDeviceContPrefix");
+    res.send({ "Data": { "prefix": "8" }, "ReturnCode": "0", "ReturnMessage": "Success", "ExceptionMessage": null })
+})
+
+
 
 app.get("/SAF", async function (req, res) {
     const code = req.query.code;
