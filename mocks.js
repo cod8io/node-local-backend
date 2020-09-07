@@ -122,6 +122,22 @@ const subtaskMock = {
             "SCANNED_DATE": "",
             "RAW_QR_DATA": ""
         }
+    ],
+    "49": [
+        {
+            "SAF_TASK_ITEM_ID": "49-1",
+            "SAF_TASK_ID": "49",
+            "SRC_BIN": "29A041",
+            "CONTAINER_ID": "",
+            "BATCH": "6Y14210",
+            "DEST_BIN": "07A022",
+            "SCANNED_SRC_BIN": "",
+            "SCANNED_DEST_BIN": "",
+            "SCANNED_ID": "",
+            "SCANNED_BY": "",
+            "SCANNED_DATE": "",
+            "RAW_QR_DATA": ""
+        },
     ]
 }
 
@@ -334,8 +350,8 @@ const storageMock2 = {
                 { id: "7-22", isFinished: false, batch: "6P12103", sourceBin: "39A075", scanBin: null, scanId: null },
             ]
         },
-        "7111": {
-            id: "7111",
+        "49": {
+            id: "49",
             operationType: OPERATION_TYPE.PICK,
             serverTimestamp: "2019-09-09T13:33:23.786Z",
             lastChangeOnDevice: "2019-09-09T13:33:23.786Z",
