@@ -55,7 +55,18 @@ app.get("/Location/GetBinCapacity", async function (req, res) {
 })
 
 app.get("/Location/GetBinInventory", async function (req, res) {
-    res.send({})
+    res.send({
+        Data: [
+            {
+                BIN: "XXXXX",
+                BATCH: "1234567",
+                WH: "RCOF",
+                QUANTITY: "24",
+                CONTAINER_TYPE: "PM8",
+                CREATED_DATE: "12/8/19"
+            }
+        ]
+    })
 })
 
 app.get("/Location/GetSAFBinMasterData", async function (req, res) {
