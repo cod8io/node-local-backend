@@ -40,6 +40,14 @@ app.post("/Task/Checkout", async function (req, res) {
     })
 })
 
+app.post("/task/VPNCheck", async function (req, res) {
+    console.log(">> Received /task/VPNCheck " + Math.random());
+    return res.send({
+        Data: true,
+        ExceptionMessage: null
+    })
+})
+
 app.get("/hello", async function (req, res) {
     console.log(">> Received hello " + Math.random());
     res.send("HEllo")
