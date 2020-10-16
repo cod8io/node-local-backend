@@ -144,6 +144,7 @@ app.post("/device/GetDeviceBatchCounters", async function (req, res) {
 app.post("/device/telemetry", async function (req, res) {
     console.log(new Date().toDateString(), " >> /device/telemetry");
     // TODO: Not mocked for the bug
+    console.log(req.body.data.toString());
     res.send({})
 })
 
