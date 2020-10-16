@@ -130,8 +130,8 @@ app.post("/device/log", async function (req, res) {
 
 // AUTH
 app.get("/User/GetRolesAndActiveDirectories", async function (req, res) {
-    res.send({ Data: [{ ROLE: "COFER_WAREHOUSE_USERS" }] })
-    // res.send({ Data: [{ ROLE: "DEVELOPER" }] })
+    // res.send({ Data: [{ ROLE: "COFER_WAREHOUSE_USERS" }] })
+    res.send({ Data: [{ ROLE: "DEVELOPER" }] })
 })
 
 // DEVICE
