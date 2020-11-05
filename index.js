@@ -118,6 +118,7 @@ app.get("/Task/GetBlockedContainerInfo", async function (req, res) {
 // TASKS
 app.post("/Task/SyncData", async function (req, res) {
     console.log(new Date().toDateString(), " >> /Task/SyncData");
+    console.log(req.body);
     res.send({})
 })
 
