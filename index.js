@@ -29,6 +29,7 @@ app.get("/Task/GetAvailableSAFTasks", async function (req, res) {
 
 app.post("/Task/Checkout", async function (req, res) {
     const { taskIds, deviceId, userId } = req.body;
+    console.log(taskIds);
     const result = {};
     taskIds.forEach(id => {
         result[id] = [];
