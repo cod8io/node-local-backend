@@ -306,6 +306,94 @@ const subtaskMock = {
             "SCANNED_DATE": "",
             "RAW_QR_DATA": ""
         },
+    ],
+    "722": [
+        {
+            "SAF_TASK_ITEM_ID": "722-1",
+            "SAF_TASK_ID": "722",
+            "SRC_BIN": "40A020",
+            "CONTAINER_ID": "",
+            "BATCH": "6Y14210",
+            "DEST_BIN": "07A022",
+            "SCANNED_SRC_BIN": "",
+            "SCANNED_DEST_BIN": "",
+            "SCANNED_ID": "",
+            "SCANNED_BY": "",
+            "SCANNED_DATE": "",
+            "RAW_QR_DATA": ""
+        },
+        {
+            "SAF_TASK_ITEM_ID": "722-2",
+            "SAF_TASK_ID": "722",
+            "SRC_BIN": "40A020",
+            "CONTAINER_ID": "",
+            "BATCH": "6Y14210",
+            "DEST_BIN": "07A022",
+            "SCANNED_SRC_BIN": "",
+            "SCANNED_DEST_BIN": "",
+            "SCANNED_ID": "",
+            "SCANNED_BY": "",
+            "SCANNED_DATE": "",
+            "RAW_QR_DATA": ""
+        },
+        {
+            "SAF_TASK_ITEM_ID": "722-3",
+            "SAF_TASK_ID": "722",
+            "SRC_BIN": "40A020",
+            "CONTAINER_ID": "",
+            "BATCH": "6Y14210",
+            "DEST_BIN": "07A022",
+            "SCANNED_SRC_BIN": "",
+            "SCANNED_DEST_BIN": "",
+            "SCANNED_ID": "",
+            "SCANNED_BY": "",
+            "SCANNED_DATE": "",
+            "RAW_QR_DATA": ""
+        },
+    ],
+    "829": [
+        {
+            "SAF_TASK_ITEM_ID": "829-1",
+            "SAF_TASK_ID": "829",
+            "SRC_BIN": "40A020",
+            "CONTAINER_ID": "",
+            "BATCH": "6Y14210",
+            "DEST_BIN": "07A022",
+            "SCANNED_SRC_BIN": "",
+            "SCANNED_DEST_BIN": "",
+            "SCANNED_ID": "",
+            "SCANNED_BY": "",
+            "SCANNED_DATE": "",
+            "RAW_QR_DATA": ""
+        },
+        {
+            "SAF_TASK_ITEM_ID": "829-2",
+            "SAF_TASK_ID": "829",
+            "SRC_BIN": "40A020",
+            "CONTAINER_ID": "",
+            "BATCH": "6Y14210",
+            "DEST_BIN": "07A022",
+            "SCANNED_SRC_BIN": "",
+            "SCANNED_DEST_BIN": "",
+            "SCANNED_ID": "",
+            "SCANNED_BY": "",
+            "SCANNED_DATE": "",
+            "RAW_QR_DATA": ""
+        },
+        {
+            "SAF_TASK_ITEM_ID": "829-3",
+            "SAF_TASK_ID": "829",
+            "SRC_BIN": "40A020",
+            "CONTAINER_ID": "",
+            "BATCH": "6Y14210",
+            "DEST_BIN": "07A022",
+            "SCANNED_SRC_BIN": "",
+            "SCANNED_DEST_BIN": "",
+            "SCANNED_ID": "",
+            "SCANNED_BY": "",
+            "SCANNED_DATE": "",
+            "RAW_QR_DATA": ""
+        },
     ]
 }
 
