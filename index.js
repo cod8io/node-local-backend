@@ -72,7 +72,8 @@ app.get("/Location/GetBinInventory", async function (req, res) {
                 WH: "RCOF",
                 QUANTITY: "24",
                 CONTAINER_TYPE: "PM8",
-                CREATED_DATE: "12/8/19"
+                CREATED_DATE: "12/8/19",
+                OPCO: "pmusa"
             }
         ]
     })
@@ -94,7 +95,17 @@ app.get("/Location/GetSAFBinMasterData", async function (req, res) {
 })
 
 app.get("/Batch/GetSAFLotMasterData", async function (req, res) {
-    res.send({})
+    res.send({
+        Data: [
+            {
+                LOT_DESC: "1813103",
+                UPDATE_DATE: "06/09/2014 11:33",
+                USABLE_IND: "N",
+                IS_NPRM_BATCH: "N",
+                OPCO: "PMUSA"
+            }
+        ]
+    })
 })
 
 app.get("/Task/GetBlockedContainerInfo", async function (req, res) {
