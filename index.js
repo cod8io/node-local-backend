@@ -10,15 +10,7 @@ app.use(express.json());
 const REDIRECT_URL = `http://localhost:${port}/SAF`
 
 app.get("/Task/GetAvailableSAFTasks", async function (req, res) {
-    return res.send({
-        Data: require("./data/GetAvailableSAFTasks_07_29_2020 09_55_27.json")
-    })
-    // return res.send({
-    //     Data: mocks.storageMock
-    // })
-})
-
-app.get("/Task/GetAvailableSAFTasks", async function (req, res) {
+    console.log(">> GetAvailableSAFTasks called");
     return res.send({
         Data: require("./data/GetAvailableSAFTasks_07_29_2020 09_55_27.json")
     })
@@ -143,6 +135,7 @@ app.post("/device/log", async function (req, res) {
 
 // AUTH
 app.get("/User/GetRolesAndActiveDirectories", async function (req, res) {
+    console.log("GetRolesAndActiveDirectories called");
     // res.send({ Data: [{ ROLE: "COFER_WAREHOUSE_USERS" }] })
     res.send({ Data: [{ ROLE: "DEVELOPER" }] })
 })
