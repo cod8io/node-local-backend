@@ -5,7 +5,8 @@ const mocks = require("./mocks")
 
 const port = process.env.PORT || 1338;
 var app = express();
-app.use(express.json());
+app.use(express.json({limit: '2mb'}));
+app.use(express.urlencoded({limit: '2mb'}));
 
 const REDIRECT_URL = `http://localhost:${port}/SAF`
 
@@ -150,13 +151,14 @@ app.post("/device/GetDeviceBatchCounters", async function (req, res) {
 app.post("/device/telemetry", async function (req, res) {
     console.log(new Date().toDateString(), " >> /device/telemetry");
     // TODO: Not mocked for the bug
-    console.log(req.body.data.toString());
+    console.log(`Syncing ${req.body.data.length} rows`);
     res.send({})
 })
 
 app.post("/device/errors", async function (req, res) {
     console.log(new Date().toDateString(), " >> /device/errors");
     // TODO: Not mocked for the bug
+    console.log(`Syncing ${req.body.data.length} rows`);
     res.send({})
 })
 
