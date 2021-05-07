@@ -266,7 +266,7 @@ const subtaskMock = {
       SAF_TASK_ITEM_ID: "11290-1",
       SAF_TASK_ID: "11290",
       SRC_BIN: "29A041",
-      CONTAINER_ID: "",
+      CONTAINER_ID: "6Y14210-0001-1234",
       BATCH: "6Y14210",
       DEST_BIN: "07A022",
       SCANNED_SRC_BIN: "",
@@ -280,7 +280,7 @@ const subtaskMock = {
       SAF_TASK_ITEM_ID: "11290-2",
       SAF_TASK_ID: "11290",
       SRC_BIN: "29A041",
-      CONTAINER_ID: "",
+      CONTAINER_ID: "6Y14210-0002-1234",
       BATCH: "6Y14210",
       DEST_BIN: "07A022",
       SCANNED_SRC_BIN: "",
@@ -288,8 +288,7 @@ const subtaskMock = {
       SCANNED_ID: "",
       SCANNED_BY: "",
       SCANNED_DATE: "",
-      RAW_QR_DATA: "",
-      IS_FIRST_POSITION: true,
+      RAW_QR_DATA: ""
     },
   ],
   112222: [
