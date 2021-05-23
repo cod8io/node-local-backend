@@ -2,6 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const querystring = require("querystring");
 const mocks = require("./mocks");
+const { TASK_MOCK } = require("./mocks");
 
 const port = process.env.PORT || 1338;
 var app = express();
@@ -13,11 +14,8 @@ const REDIRECT_URL = `http://localhost:${port}/SAF`;
 app.get("/Task/GetAvailableSAFTasks", async function (req, res) {
   console.log(">> GetAvailableSAFTasks called");
   return res.send({
-    Data: require("./data/GetAvailableSAFTasks_07_29_2020 09_55_27.json"),
+    Data: TASK_MOCK.filter((t) => t.SAF_STATUS_CODE === "AVL"),
   });
-  // return res.send({
-  //     Data: mocks.storageMock
-  // })
 });
 
 app.post("/Task/Checkout", async function (req, res) {
@@ -29,6 +27,51 @@ app.post("/Task/Checkout", async function (req, res) {
     result[id] = [];
     const data = mocks.subtaskMock[id];
     data.forEach((d) => result[id].push(d));
+    const task = TASK_MOCK.find((t) => t.SAF_TASK_ID === id);
+    if (task) {
+      task.SAF_STATUS_CODE = "OUT";
+      task.SAF_STATUS_ID = "2";
+    }
+  });
+  return res.send({
+    Data: result,
+  });
+});
+
+app.post("/Task/Checkin", async function (req, res) {
+  console.log(">> /Task/Checkin");
+  const { taskIds, deviceId, userId } = req.body;
+  console.log(taskIds);
+  const result = {};
+  taskIds.forEach((id) => {
+    result[id] = [];
+    const data = mocks.subtaskMock[id];
+    data.forEach((d) => result[id].push(d));
+    const task = TASK_MOCK.find((t) => t.SAF_TASK_ID === id);
+    if (task) {
+      task.SAF_STATUS_CODE = "AVL";
+      task.SAF_STATUS_ID = "1";
+    }
+  });
+  return res.send({
+    Data: {},
+  });
+});
+
+app.post("/Task/Checkin/Move", async function (req, res) {
+  console.log(">> /Task/Checkin/Move");
+  const { taskIds, deviceId, userId } = req.body;
+  console.log(taskIds);
+  const result = {};
+  taskIds.forEach((id) => {
+    result[id] = [];
+    const data = mocks.subtaskMock[id];
+    data.forEach((d) => result[id].push(d));
+    const task = TASK_MOCK.find((t) => t.SAF_TASK_ID === id);
+    if (task) {
+      task.SAF_STATUS_CODE = "OUT";
+      task.SAF_STATUS_ID = "2";
+    }
   });
   return res.send({
     Data: result,

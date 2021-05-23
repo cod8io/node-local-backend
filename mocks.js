@@ -31,6 +31,8 @@ const CONTAINER_TYPE = {
   CS: "CS",
 };
 
+const TASK_MOCK = require("./data/GetAvailableSAFTasks_07_29_2020 09_55_27.json");
+
 const storageMock = [
   {
     SAF_TASK_ID: "11123",
@@ -288,7 +290,7 @@ const subtaskMock = {
       SCANNED_ID: "",
       SCANNED_BY: "",
       SCANNED_DATE: "",
-      RAW_QR_DATA: ""
+      RAW_QR_DATA: "",
     },
   ],
   112222: [
@@ -517,4 +519,5 @@ const subtaskMock = {
 module.exports = {
   storageMock: storageMock,
   subtaskMock: subtaskMock,
+  TASK_MOCK: TASK_MOCK,
 };
