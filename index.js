@@ -1,8 +1,8 @@
 const express = require("express");
 const axios = require("axios");
 const querystring = require("querystring");
-const mocks = require("./mocks");
 const { TASK_MOCK } = require("./mocks");
+const { SUBTASKS_MOCK } = require("./mocks");
 
 const port = process.env.PORT || 1338;
 var app = express();
@@ -25,7 +25,7 @@ app.post("/Task/Checkout", async function (req, res) {
   const result = {};
   taskIds.forEach((id) => {
     result[id] = [];
-    const data = mocks.subtaskMock[id];
+    const data = SUBTASKS_MOCK[id];
     data.forEach((d) => result[id].push(d));
     const task = TASK_MOCK.find((t) => t.SAF_TASK_ID === id);
     if (task) {
@@ -42,11 +42,7 @@ app.post("/Task/Checkin", async function (req, res) {
   console.log(">> /Task/Checkin");
   const { taskIds, deviceId, userId } = req.body;
   console.log(taskIds);
-  const result = {};
   taskIds.forEach((id) => {
-    result[id] = [];
-    const data = mocks.subtaskMock[id];
-    data.forEach((d) => result[id].push(d));
     const task = TASK_MOCK.find((t) => t.SAF_TASK_ID === id);
     if (task) {
       task.SAF_STATUS_CODE = "AVL";
@@ -60,21 +56,43 @@ app.post("/Task/Checkin", async function (req, res) {
 
 app.post("/Task/Checkin/Move", async function (req, res) {
   console.log(">> /Task/Checkin/Move");
-  const { taskIds, deviceId, userId } = req.body;
-  console.log(taskIds);
-  const result = {};
-  taskIds.forEach((id) => {
-    result[id] = [];
-    const data = mocks.subtaskMock[id];
-    data.forEach((d) => result[id].push(d));
-    const task = TASK_MOCK.find((t) => t.SAF_TASK_ID === id);
-    if (task) {
-      task.SAF_STATUS_CODE = "OUT";
-      task.SAF_STATUS_ID = "2";
+  const { tasks, subtasks, deviceId, userId } = req.body;
+  const map = {};
+
+  // Update TASKS
+  tasks.forEach((t) => {
+    let isNewMove = false;
+    if (isNaN(t.SAF_TASK_ID)) {
+      // Task created on the device
+      const id = generateNumber();
+      map[t.SAF_TASK_ID] = id;
+      t.SAF_TASK_ID = id;
+      isNewMove = true;
+    }
+    if (isNewMove) {
+      t.SAF_STATUS_CODE = "AVL";
+      t.SAF_STATUS_ID = "1";
+      TASK_MOCK.push(t);
+    } else {
+      const task = TASK_MOCK.find((t) => t.SAF_TASK_ID === id);
+      if (task) {
+        task.SAF_STATUS_CODE = "AVL";
+        task.SAF_STATUS_ID = "1";
+      }
     }
   });
+
+  // Update SUBTASKS
+  subtasks.forEach((s) => {
+    SUBTASKS_MOCK[s.SAF_TASK_ID] = [];
+  });
+  subtasks.forEach((s) => {
+    SUBTASKS_MOCK[s.SAF_TASK_ID].push(s);
+  });
+  console.log(map);
+
   return res.send({
-    Data: result,
+    Data: { updatedIdMap: map },
   });
 });
 
@@ -263,3 +281,5 @@ app.get("/debug-remote", async function (req, res) {
 });
 
 app.listen(port);
+
+const generateNumber = Math.floor(Math.random() * 90000) + 10000;
