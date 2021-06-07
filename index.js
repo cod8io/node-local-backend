@@ -33,6 +33,7 @@ app.post("/Task/Checkout", async function (req, res) {
       task.SAF_STATUS_ID = "2";
     }
   });
+  console.log(result);
   return res.send({
     Data: result,
   });
@@ -64,24 +65,27 @@ app.post("/Task/Checkin/Move", async function (req, res) {
     let isNewMove = false;
     if (isNaN(t.SAF_TASK_ID)) {
       // Task created on the device
+      const oldId = t.SAF_TASK_ID;
       const id = generateNumber();
       map[t.SAF_TASK_ID] = id;
       t.SAF_TASK_ID = id;
       isNewMove = true;
+      subtasks.forEach((s) => {
+        if (s.SAF_TASK_ID === oldId) s.SAF_TASK_ID = t.SAF_TASK_ID;
+      });
     }
     if (isNewMove) {
       t.SAF_STATUS_CODE = "AVL";
       t.SAF_STATUS_ID = "1";
       TASK_MOCK.push(t);
     } else {
-      const task = TASK_MOCK.find((t) => t.SAF_TASK_ID === id);
+      const task = TASK_MOCK.find((t) => t.SAF_TASK_ID === t.SAF_TASK_ID);
       if (task) {
         task.SAF_STATUS_CODE = "AVL";
         task.SAF_STATUS_ID = "1";
       }
     }
   });
-
   // Update SUBTASKS
   subtasks.forEach((s) => {
     SUBTASKS_MOCK[s.SAF_TASK_ID] = [];
@@ -89,7 +93,6 @@ app.post("/Task/Checkin/Move", async function (req, res) {
   subtasks.forEach((s) => {
     SUBTASKS_MOCK[s.SAF_TASK_ID].push(s);
   });
-  console.log(map);
 
   return res.send({
     Data: { updatedIdMap: map },
@@ -282,4 +285,4 @@ app.get("/debug-remote", async function (req, res) {
 
 app.listen(port);
 
-const generateNumber = Math.floor(Math.random() * 90000) + 10000;
+const generateNumber = () => Math.floor(Math.random() * 90000) + 10000;
