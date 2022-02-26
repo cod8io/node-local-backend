@@ -34,6 +34,7 @@ app.post("/Task/Checkout", async function (req, res) {
     }
   });
   console.log(result);
+  console.log(result);
   return res.send({
     Data: result,
   });
@@ -55,13 +56,13 @@ app.post("/Task/Checkin", async function (req, res) {
   });
 });
 
-app.post("/Task/Checkin/Move", async function (req, res) {
-  console.log(">> /Task/Checkin/Move");
-  const { tasks, subtasks, deviceId, userId } = req.body;
+app.post("/Task/MoveCheckin", async function (req, res) {
+  console.log(">> /Task/MoveCheckin");
+  const { tasksMoveReplace, subtasksMoveReplace, deviceId, userId } = req.body;
   const map = {};
 
   // Update TASKS
-  tasks.forEach((t) => {
+  tasksMoveReplace.forEach((t) => {
     let isNewMove = false;
     if (isNaN(t.SAF_TASK_ID)) {
       // Task created on the device
@@ -70,7 +71,7 @@ app.post("/Task/Checkin/Move", async function (req, res) {
       map[t.SAF_TASK_ID] = id;
       t.SAF_TASK_ID = id;
       isNewMove = true;
-      subtasks.forEach((s) => {
+      subtasksMoveReplace.forEach((s) => {
         if (s.SAF_TASK_ID === oldId) s.SAF_TASK_ID = t.SAF_TASK_ID;
       });
     }
@@ -87,15 +88,21 @@ app.post("/Task/Checkin/Move", async function (req, res) {
     }
   });
   // Update SUBTASKS
-  subtasks.forEach((s) => {
+  subtasksMoveReplace.forEach((s) => {
     SUBTASKS_MOCK[s.SAF_TASK_ID] = [];
   });
-  subtasks.forEach((s) => {
+  subtasksMoveReplace.forEach((s) => {
     SUBTASKS_MOCK[s.SAF_TASK_ID].push(s);
   });
 
+  const result = [];
+  for (const [hashId, integerId] of Object.entries(map)) {
+    result.push(`${hashId}:${integerId}`);
+  }
+  console.log("returning");
+  console.log(result);
   return res.send({
-    Data: { updatedIdMap: map },
+    Data: { updatedIdMap: result },
   });
 });
 
