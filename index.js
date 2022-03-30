@@ -11,6 +11,12 @@ app.use(express.urlencoded({ limit: "2mb" }));
 
 const REDIRECT_URL = `http://localhost:${port}/SAF`;
 
+app.get("/hello", async function (req, res) {
+  return res.send({
+    Data: "HELLO",
+  });
+});
+
 app.get("/Task/GetAvailableSAFTasks", async function (req, res) {
   console.log(">> GetAvailableSAFTasks called");
   return res.send({

@@ -152,6 +152,22 @@ const subtaskMock = {
       RAW_QR_DATA: "",
     },
   ],
+  70100: [
+    {
+      SAF_TASK_ITEM_ID: "49-1",
+      SAF_TASK_ID: "49",
+      SRC_BIN: "29A041",
+      CONTAINER_ID: "",
+      BATCH: "6Y14210",
+      DEST_BIN: "07A022",
+      SCANNED_SRC_BIN: "",
+      SCANNED_DEST_BIN: "",
+      SCANNED_ID: "",
+      SCANNED_BY: "",
+      SCANNED_DATE: "",
+      RAW_QR_DATA: "",
+    },
+  ],
   256: [
     {
       SAF_TASK_ITEM_ID: "49-1",
