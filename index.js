@@ -3,15 +3,28 @@ const axios = require("axios");
 const querystring = require("querystring");
 const { TASK_MOCK } = require("./mocks");
 const { SUBTASKS_MOCK } = require("./mocks");
+const cors = require("cors");
 
 const port = process.env.PORT || 1338;
 var app = express();
+
+app.use(cors({
+  exposedHeaders: ['X-Refresh-Token']
+}));
+
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ limit: "2mb" }));
 
 const REDIRECT_URL = `http://localhost:${port}/SAF`;
 
 app.get("/hello", async function (req, res) {
+  return res.send({
+    Data: "HELLO",
+  });
+});
+
+app.get("/token", async function (req, res) {
+  res.setHeader("X-Refresh-Token", "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyRW1haWwiOiJtYXJ0aW5AZ21haWwuY29tIiwiZXhwaXJhdGlvbiI6MTk1NTAwMDAwMCwiY3JlYXRlZFRpbWVzdGFtcCI6MTY1NTAwMDAwMH0.pi-C2PX1HR8KEjTz7vGbHY0bG01LtLT3eJ8ysEiyO_E");
   return res.send({
     Data: "HELLO",
   });
